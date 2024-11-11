@@ -11,10 +11,9 @@ import { index } from "drizzle-orm/mysql-core";
 import BudgetItem from "C:/Sushi/Project/expense-tracker1/expense-tracker/app/(routes)/dashboard/budgets/_components/BudgetItem.jsx";
 
 function BudgetList() {
-    // const [budgetList, setbudgetList]=useState([]);
+    const [budgetList, setbudgetList]=useState([]);
     const { user } = useUser();
     useEffect(() => {
-        console.log("User:", user);
         user && getBudgetList();
     }, [user])
     const getBudgetList = async () => {
@@ -28,19 +27,18 @@ function BudgetList() {
             .leftJoin(Expenses, eq(Budgets.id, Expenses.budgetId))
             .where(eq(Budgets.createdBy, user?.primaryEmailAddress?.emailAddress))
             .groupBy(Budgets.id);
-
-        console.log(result);
-        console.log("Query Result:", result);
+            setbudgetList(result);
 
         // setbudgetList(result);
     }
     return (
         <div className="mt-7">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 md:grid-cols-2
+             lg:grid-cols-3 gap-5">
                 <CreateBudget />
-                {/* {BudgetList.map((budget,index)=>(
+                {budgetList.map((budget,index)=>(
                 <BudgetItem budget={budget}/>
-            ))} */}
+            ))}
             </div>
         </div>
     )
