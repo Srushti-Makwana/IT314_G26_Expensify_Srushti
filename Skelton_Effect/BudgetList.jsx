@@ -25,7 +25,8 @@ function BudgetList() {
             .from(Budgets)
             .leftJoin(Expenses, eq(Budgets.id, Expenses.budgetId))
             .where(eq(Budgets.createdBy, user?.primaryEmailAddress?.emailAddress))
-            .groupBy(Budgets.id);
+            .groupBy(Budgets.id)
+            .orderBy(desc(Budgets.id));
         setBudgetList(result);
     };
 
