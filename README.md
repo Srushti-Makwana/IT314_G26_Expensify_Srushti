@@ -5,3 +5,4 @@ Addition of Sidenav 08/11/2024
 Addition of expense table in the database 11/11/2024
 Display of the existing budgets and their progression 11/11/2024
 updating the budget list without refreshing the page
+skeleton effect added 
