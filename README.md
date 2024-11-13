@@ -8,3 +8,4 @@ updating the budget list without refreshing the page
 skeleton effect added 
 added 3 components in dashboard that includes total spend, total budget and number of budgets 14/11/2024
 added skeleton effect and enhanced the designs for all the tabs
+Adding bar charts using tools from recharts for better understanding at managing expense
