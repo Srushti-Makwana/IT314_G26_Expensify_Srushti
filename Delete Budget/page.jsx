@@ -8,6 +8,7 @@ import { desc, eq, getTableColumns,sql } from "drizzle-orm";
 import BudgetItem from "../../budgets/_components/BudgetItem";
 import AddExpense from "C:/Users/Admin/Downloads/expense-tracker/expense-tracker/app/(routes)/dashboard/expenses/_components/AddExpense.jsx";
 import ExpenseListTable from "../_components/ExpenseListTable.jsx";
+import { Button } from "../../../../../@/components/ui/button";
 import {
     AlertDialog,
     AlertDialogAction,
@@ -82,9 +83,9 @@ function ExpensesScreen({params}){
                     
             <AlertDialog>
                 <AlertDialogTrigger asChild>
-                    <button className="flex gap-2 mt-2 px-3 py-2 bg-red-600 text-white text-sm rounded hover:bg-red-700" variant="destructive">
+                    <Button className="flex gap-2 mt-2 px-3 py-2 bg-red-600 text-white text-sm rounded hover:bg-red-700" variant="destructive">
                     <Trash /> Delete
-                    </button> 
+                    </Button> 
         </AlertDialogTrigger>
         <AlertDialogContent className="fixed inset-0 flex items-center justify-center z-50">
     {/* Semi-transparent overlay that allows background to show through */}
