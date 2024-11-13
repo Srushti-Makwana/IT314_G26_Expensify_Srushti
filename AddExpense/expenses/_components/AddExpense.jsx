@@ -1,63 +1,89 @@
-import React,{useState} from "react"
-import { db } from "../../../../utils/dbConfig";
-import { Budgets, Expenses } from "../../../../utils/schema";
+"use client";
+import React, { useState } from "react";
 import { toast } from "sonner";
+import { db } from "C:/Sushi/Project/expense-tracker1/expense-tracker/utils/dbConfig.jsx";
+import { Expenses } from "C:/Sushi/Project/expense-tracker1/expense-tracker/utils/schema.jsx";
 
-function AddExpense({budgetId,user,refreshData}){
-    
-    const [name,setName]=useState("");
-    const [amount,setAmount]=useState("");
-    
-    const addNewExpense = async()=>{
-        const result= await db.insert(Expenses).values({
-            name:name,
-            amount : amount,
-            budgetId:budgetId,
-            createdBy: user?.primaryEmailAddress?.emailAddress
-        }).returning({insertedId:Budgets.id });
+function AddExpense({ budgetId, user, refreshData }) {
+    const [name, setName] = useState("");
+    const [amount, setAmount] = useState("");
 
-        console.log(result);
-        if(result){
-            refreshData()
-            toast("New Expense Added!")
+    const addNewExpense = async () => {
+        if (!name || !amount) {
+            toast.error("Please fill all fields!");
+            return;
         }
-    }
+
+        try {
+            const result = await db
+                .insert(Expenses)
+                .values({
+                    name: name.trim(),
+                    amount: parseFloat(amount),
+                    budgetId: budgetId,
+                    createdBy: user?.primaryEmailAddress?.emailAddress,
+                    createdAt: new Date(), // Ensure createdAt field is populated
+                })
+                .returning({ insertedId: Expenses.id });
+
+            console.log("Insert Result:", result);
+
+            if (result.length > 0) {
+                refreshData();
+                toast.success("New Expense Added!");
+                setName("");
+                setAmount("");
+            } else {
+                toast.error("Failed to add expense. Please try again.");
+            }
+        } catch (error) {
+            console.error("Error inserting expense:", error);
+            toast.error("Failed to add expense. Please try again.");
+        }
+    };
 
     return (
-        <div className="border p-5 rounded-lg">
-            <h2 className="font-bold text-lg">Add Expense</h2>
-            <div className="mt-3 w-full">
-                                    <h2 className="text-black font-medium mb-1 text-left">Expense Name</h2>
-                                    <input 
-                                        type="text"
-                                        value={name}
-                                        onChange={(e) => setName(e.target.value)}
-                                        placeholder="e.g. Bedroom Decor"
-                                        className="w-full p-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    />
-                                </div>
+        <div className="border p-5 rounded-lg shadow-lg bg-white hover:shadow-xl transition-shadow">
+            <h2 className="font-bold text-lg mb-4 text-center text-gray-800">
+                <span role="img" aria-label="expense">💸</span> Add Expense
+            </h2>
+            <div className="space-y-4">
+                <div>
+                    <h2 className="text-gray-700 font-medium mb-1 text-left">Expense Name</h2>
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="e.g. Bedroom Decor"
+                        className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                </div>
 
-                                <div className="mt-3 w-full">
-                                    <h2 className="text-black font-medium mb-1 text-left">Expense Amount</h2>
-                                    <input 
-                                        type="number"
-                                        value={amount}
-                                        onChange={(e) => setAmount(e.target.value)}
-                                        placeholder="e.g. Rs 100000"
-                                        className="w-full p-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    />
-                                </div>
-                                
-                                <button
-                                disabled={!(name && amount)}
-                                onClick={()=>addNewExpense()}
-                                        className={`mt-5 w-full p-3 rounded-md transition-colors duration-300 
-                                                    ${name && amount ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-gray-400 text-gray-200 cursor-not-allowed'}`}
-                                    >
-                                        Add New Expense
-                                    </button>
+                <div>
+                    <h2 className="text-gray-700 font-medium mb-1 text-left">Expense Amount</h2>
+                    <input
+                        type="number"
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
+                        placeholder="e.g. Rs 100000"
+                        className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                </div>
 
+                <button
+                    disabled={!(name && amount)}
+                    onClick={addNewExpense}
+                    className={`w-full p-3 rounded-md text-white font-semibold transition-all ${
+                        name && amount
+                            ? "bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 hover:scale-105 shadow-lg"
+                            : "bg-gray-400 cursor-not-allowed"
+                    }`}
+                >
+                    Add New Expense
+                </button>
+            </div>
         </div>
-    )
+    );
 }
-export default AddExpense
+
+export default AddExpense;
