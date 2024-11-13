@@ -11,3 +11,4 @@ added skeleton effect and enhanced the designs for all the components
 Adding bar charts using tools from recharts for better understanding at managing expense
 Displaying budget list on dashboard with each budget directing to its own expense page
 Displaying expense list on dashboard
+Improved the design of budget list in dashboard and also added variables like remaining budget, how much already spend, etc
