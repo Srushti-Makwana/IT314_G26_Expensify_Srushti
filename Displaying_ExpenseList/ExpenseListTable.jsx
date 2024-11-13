@@ -18,9 +18,9 @@ function ExpenseListTable({ expensesList, refreshData }) {
     };
 
     return (
-        <div className="mt-5 bg-white shadow-md rounded-lg overflow-hidden">
-            <h2 className="font-bold text-lg">Latest Expenses</h2>
-            <div className="grid grid-cols-4 bg-gray-100 text-gray-700 p-4 mt-3">
+        <div className="mt-8 bg-white shadow-lg rounded-lg overflow-hidden">
+            <h2 className="font-semibold text-2xl text-gray-800 mb-4 px-6">Latest Expenses</h2>
+            <div className="grid grid-cols-4 gap-6 bg-gray-100 p-4 rounded-t-lg text-gray-700">
                 <h2 className="font-semibold text-lg">Name</h2>
                 <h2 className="font-semibold text-lg">Amount</h2>
                 <h2 className="font-semibold text-lg">Date</h2>
@@ -28,19 +28,25 @@ function ExpenseListTable({ expensesList, refreshData }) {
             </div>
 
             {expensesList.length > 0 ? (
-                expensesList.map((expense, index) => (
+                expensesList.map((expense) => (
                     <div
                         key={expense.id}
-                        className="grid grid-cols-4 p-4 border-b hover:bg-gray-50 transition-all duration-200"
+                        className="grid grid-cols-4 gap-6 p-4 border-b hover:bg-gray-50 transition-all duration-300 ease-in-out"
                     >
-                        <h2 className="text-gray-800">{expense.name}</h2>
-                        <h2 className="text-gray-800">{expense.amount}</h2>
-                        <h2 className="text-gray-500">{new Date(expense.createdAt).toLocaleDateString()}</h2>
+                        <h2 className="text-gray-800 font-medium">{expense.name}</h2>
+                        <h2 className="text-gray-800 font-medium">
+                            ₹ {expense.amount.toLocaleString()}
+                        </h2>
+                        <h2 className="text-gray-500 font-medium">
+                            {new Date(expense.createdAt).toLocaleDateString()}
+                        </h2>
                         <h2 className="text-center">
-                            <Trash
-                                className="text-red-500 hover:text-red-700 cursor-pointer transition duration-200"
+                            <div
                                 onClick={() => deleteExpense(expense)}
-                            />
+                                className="inline-flex items-center justify-center text-white bg-red-600 hover:bg-red-700 p-2 rounded-full cursor-pointer transition duration-200 ease-in-out transform hover:scale-105"
+                            >
+                                <Trash className="text-white" size={18} />
+                            </div>
                         </h2>
                     </div>
                 ))
