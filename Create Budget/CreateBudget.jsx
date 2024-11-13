@@ -13,6 +13,8 @@ import {db} from "C:/Users/Admin/Downloads/expense-tracker/utils/dbConfig.jsx";
 import { Budgets } from "C:/Users/Admin/Downloads/expense-tracker/utils/schema.jsx"; 
 import { useUser } from "@clerk/nextjs";
 import { toast } from "sonner";
+import { Button } from "../../../../../@/components/ui/button";
+
 
 function CreateBudget() {
     const [emojiIcon, setEmojiIcon] = useState('+');
@@ -94,14 +96,14 @@ function CreateBudget() {
                                     />
                                 </div>
 
-                                <button
+                                <Button
                                         disabled={!(name && amount)}
                                         onClick={()=>onCreateBudget()}
                                         className={`mt-5 w-full p-3 rounded-md transition-colors duration-300 
                                                     ${name && amount ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-gray-400 text-gray-200 cursor-not-allowed'}`}
                                     >
                                         Create Budget
-                                    </button>
+                                    </Button>
 
                             </div>
                         </DialogDescription>
