@@ -10,3 +10,4 @@ added 3 components in dashboard that includes total spend, total budget and numb
 added skeleton effect and enhanced the designs for all the components
 Adding bar charts using tools from recharts for better understanding at managing expense
 Displaying budget list on dashboard with each budget directing to its own expense page
+Displaying expense list on dashboard
