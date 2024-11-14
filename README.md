@@ -12,3 +12,4 @@ Adding bar charts using tools from recharts for better understanding at managing
 Displaying budget list on dashboard with each budget directing to its own expense page
 Displaying expense list on dashboard
 Improved the design of budget list in dashboard and also added variables like remaining budget, how much already spend, etc
+designed the expense page with a search bar to choose any expense and also sorted all expenses in the table below it
