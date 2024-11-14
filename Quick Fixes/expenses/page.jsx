@@ -36,7 +36,7 @@ function ExpensesPage() {
             .from(Expenses)
             .leftJoin(Budgets, eq(Expenses.budgetId, Budgets.id))
             .where(eq(Budgets.createdBy, user?.primaryEmailAddress?.emailAddress))
-            .orderBy(desc(Expenses.createdAt));
+            
 
         setExpensesList(result);
         setFilteredExpenses(result);
