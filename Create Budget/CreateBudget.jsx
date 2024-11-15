@@ -17,7 +17,7 @@ import { Button } from "../../../../../@/components/ui/button";
 
 
 function CreateBudget() {
-    const [emojiIcon, setEmojiIcon] = useState('+');
+    const [emojiIcon, setEmojiIcon] = useState('😄');
     const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
     const [name, setName] = useState('');     
     const [amount, setAmount] = useState('');  
