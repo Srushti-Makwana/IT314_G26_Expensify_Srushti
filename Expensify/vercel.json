@@ -1,8 +1,0 @@
-{
-    "functions": {
-      "middleware.ts": {
-        "runtime": "nodejs16.x"
-      }
-    }
-  }
-  
