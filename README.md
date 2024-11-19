@@ -59,8 +59,8 @@ We welcome contributions to enhance Expensify!
 
 ## Contact  
 For any queries or feedback, feel free to reach out:  
-- Maintainer: Dharmil Munjapara  
-- Email: [your email here]  
+- Maintainer: IT314 G26  
+- Email: Any member of G26 on their DA-IICT ID's  
 - Repository: [Expensify GitHub Repository](https://github.com/KkavyDave/IT314_G26_Expensify.git)
 
 ---  
