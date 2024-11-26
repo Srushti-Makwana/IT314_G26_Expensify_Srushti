@@ -32,9 +32,7 @@ function AddExpense({ budgetId, user, refreshData }) {
           body: JSON.stringify({
             email: user?.primaryEmailAddress?.emailAddress,
             subject: 'Budget Exceeded Alert',
-            message: `Your budget "${budgetName}" has been exceeded. 
-            Budget Limit: ₹${budgetLimit}
-            Current Total Expenses: ₹${currentTotal}`,
+           
           }),
         });
   
