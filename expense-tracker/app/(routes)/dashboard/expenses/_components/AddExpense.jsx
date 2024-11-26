@@ -119,7 +119,7 @@ function AddExpense({ budgetId, user, refreshData }) {
             <h2 className="text-gray-400 font-medium my-1">Expense Amount</h2>
             <input
               type="number"
-              placeholder="e.g. 1000"
+              placeholder="e.g. Rs.1000"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               className="bg-[#3a3a3a] text-gray-200 placeholder-gray-500 rounded-lg p-2 w-full"
